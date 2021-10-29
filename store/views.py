@@ -1,11 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from store.models import Category,Product
 
 # Create your views here.
 
-def index(request):
+def index(request, category_slug=None):
     products = None
-    products = Product.objects.all().filter(available=True)
+
+    category_page=Category.objects.get(id = category_slug)
+    if category_slug != None:
+        products = Product.objects.all().filter(category=category_page,avilable=True)
+
+    else:     
+        products = Product.objects.all().filter(available=True)
     return render(request, 'index.html',{'products':products})
 
 def product(request):

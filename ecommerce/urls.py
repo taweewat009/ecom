@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
+from store import views
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include("store.urls")),
+    path('category/<slug:category_slug>',views.index,name="product_by_category"),
 ]
 
 if settings.DEBUG:
