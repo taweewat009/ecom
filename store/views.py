@@ -5,10 +5,9 @@ from store.models import Category,Product
 
 def index(request, category_slug=None):
     products = None
-
-    category_page=Category.objects.get(id = category_slug)
+    category_page = get_object_or_404(Category,slug=category_slug)
     if category_slug != None:
-        products = Product.objects.all().filter(category=category_page,avilable=True)
+        products = Product.objects.all().filter(category=category_page,available=True)
 
     else:     
         products = Product.objects.all().filter(available=True)
