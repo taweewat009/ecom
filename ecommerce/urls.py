@@ -24,7 +24,9 @@ urlpatterns = [
     path('product/',views.product),
     path('',views.index,name="index"),
     path('category/<slug:category_slug>',views.index,name="product_by_category"),
-    path('product/<slug:category_slug>/<slug:product_slug>',views.product,name="product")
+    path('product/<slug:category_slug>/<slug:product_slug>',views.product,name="product"),
+    path('cart/add/<int:product_id>',views.add_cart,name="addCart"),
+    path('cartdetail',views.cartdetail,name='cartdetail'),
 ]
 
 if settings.DEBUG:
